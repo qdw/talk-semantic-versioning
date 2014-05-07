@@ -1,0 +1,102 @@
+Semantic Versioning Lightning Talk, by Quinn Weaver. SF.pm 2014-05-06
+=====================================================================
+
+Perl Tie-In
+-----------
+
+Perl uses something close to semantic versioning, but you may never have
+stopped to think about it.
+
+Why Use Semantic Versioning?
+----------------------------
+
+A. Makes life easy for downstream users of your library/module/app/whatever.
+
+1. Avoids Dependency Hell.
+
+2. Simplifies the work of distro maintainers.
+   
+What is Semantic Versioning?
+----------------------------
+
+The simplified answer:
+
+2.4.6
+^ ^ ^
+| | |
+| | |- patch
+| |
+| |- minor
+|
+|-major
+
+Let's look at an example. Imagine I have a library named libtoastbot,
+used for controlling toasters.
+
+Increment *patch* when you make a bug fix, like fixing a security
+hole. This doesn't change the intended behavior of the system at all.
+It just changes the *actual* behavior to make it (more) like
+the *intended* behavior:
+
+- libtoastbot 2.4.7: fixed a bug that caused the toaster to halt and catch fire
+  when toast_darkness == 5.3
+
+Increment *minor* when you add features, but preserve backwards compatibility.
+You then reset *patch* to 0"
+
+- libtoastbot 2.5.0: added the ability to toast bagels.
+
+Increment *major* when you make changes that break older functionality.
+Reset *minor* and *patch* to 0:
+
+- libtoastbot 3.0.0: removed the deprecated eject_early() API call.
+
+Why This Is Awesome
+-------------------
+
+Managing versions is a pain.
+
+- Distributions like Debian and Red Hat are well-known for being very
+  conservative, but sometimes they're too conservative.
+
+  An old, bug-ridden version can be as bad for stability and security as an
+  untested, bleeding-edge version.
+
+- If you're writing against an API, this makes it really easy to know
+  which versions to just get and which versions (major) need more
+  doc reading/testing.
+
+Semantic Versioning in Perl (Sort of)
+-------------------------------------
+
+5.18.2
+^ ^^ ^
+| |  |
+| |  |- patch
+| |
+| |- major
+|
+|- language(!)
+
+Semantic Versioning in PostgreSQL (Sort of)
+-------------------------------------------
+
+9.3.4
+^ ^ ^
+| | |
+| | |- patch
+| |
+| |- combination of minor (new features) and major (incompatible features)
+|
+|- used to add emphasis to important feature releases (e.g. 9.0 and replication)
+   Josh Berkus calls this "the marketing version."
+
+Semantic Versioning Resources
+-----------------------------
+
+The spec, and an explanation:
+
+http://semver.org/
+
+Yes, SemVer was created by Tom Preston-Werner of GitHub harassment fame.
+I can't condone his actions. But I still think SemVer is a good idea.
